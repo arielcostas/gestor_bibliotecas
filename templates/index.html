@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% include "_fragments/head.html" %}
+
+	<title>Title</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+{% include "_fragments/header.html" %}
+
+<main class="flex-grow-1">
+	{% for libro in libros %}
+		{{ libro.titulo }} por {{ libro.autor }}<br/>
+	{% endfor %}
+</main>
+
+{% include "_fragments/footer.html" %}
+</body>
+</html>
