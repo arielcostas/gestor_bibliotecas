@@ -6,10 +6,7 @@ class Libro(models.Model):
 	titulo = models.CharField(max_length=100)
 	autor = models.CharField(max_length=50)
 	editorial = models.CharField(max_length=50)
-	fecha_publicacion = models.DateField()
-	genero = models.CharField(max_length=50)
-	idioma = models.CharField(max_length=50)
-	descripcion = models.CharField(max_length=200)
+	fecha_adquisicion = models.DateField()
 
 	class Meta:
 		verbose_name = 'Libro'
