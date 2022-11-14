@@ -3,15 +3,78 @@
 <head>
 	{% include "_fragments/head.html" %}
 
-	<title>Title</title>
+	<title>Inicio - Gestor bibliotecas</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
 {% include "_fragments/header.html" %}
 
-<main class="flex-grow-1">
-	{% for libro in libros %}
-		{{ libro.titulo }} por {{ libro.autor }}<br/>
-	{% endfor %}
+<main class="flex-grow-1 container py-3">
+	<!-- Una barra de búsqueda y un botón primario de buscar -->
+	<form method="GET" class="col-12 col-md-8 mx-auto">
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Buscar libros, autores y socios"
+				   name="query"
+				   aria-label="Buscar"
+				   aria-describedby="button-addon2">
+
+			<button class="btn btn-primary" type="submit" id="button-addon2">Buscar</button>
+		</div>
+	</form>
+
+	{% if socios.count > 0 %}
+		<h2 class="text-center">Socios</h2>
+		<table class="table">
+			<tr>
+				<th>DNI</th>
+				<th>Estado</th>
+				<th>Nombre</th>
+				<th>Apellidos</th>
+			</tr>
+			{% for socio in socios %}
+				<tr>
+					<th>{{ socio.dni }}</th>
+					<td>
+						<!-- Si tiene bloqueado_hasta, mostrar una badge roja con el texto "Bloqueado" -->
+						{% if socio.bloqueado_hasta != None %}
+							<span class="badge badge-danger">Bloqueado</span>
+						{% else %}
+							<span class="badge badge-success">Activo</span>
+						{% endif %}
+					</td>
+					<td>{{ socio.nombre }}</td>
+					<td>{{ socio.apellidos }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	{% endif %}
+
+	{% if libros.count > 0 %}
+		<h2 class="text-center">Libros</h2>
+		<table class="table">
+			<tr>
+				<th>Código</th>
+				<th>Título</th>
+				<th>Autor</th>
+				<th>ISBN</th>
+			</tr>
+			{% for libro in libros %}
+				<tr>
+					<th>{{ libro.codigo }}</th>
+					<td>
+						<!-- Si tiene bloqueado_hasta, mostrar una badge roja con el texto "Bloqueado" -->
+						{% if socio.bloqueado_hasta %}
+							<span class="badge badge-danger">Bloqueado</span>
+						{% else %}
+							<span class="badge badge-success">Activo</span>
+						{% endif %}
+					</td>
+					<td>{{ socio.titulo }}</td>
+					<td>{{ socio.autor }}</td>
+					<td>{{ socio.isbn }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+	{% endif %}
 </main>
 
 {% include "_fragments/footer.html" %}
