@@ -23,12 +23,12 @@
 				<li class="nav-item">
 					{% url 'libros/index' as url %}
 					<a class="nav-link {% if request.path == url %}active{% endif %}"
-					   href="{{ url }}">Inicio</a>
+					   href="{{ url }}">Libros</a>
 				</li>
 				<li class="nav-item">
 					{% url 'prestamos/index' as url %}
 					<a class="nav-link {% if request.path == url %}active{% endif %}"
-					   href="{{ url }}">Préstamos</a>
+					   href="{{ url }}">Préstamos activos</a>
 				</li>
 			</ul>
 		</div>

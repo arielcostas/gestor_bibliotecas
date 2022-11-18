@@ -8,13 +8,13 @@
       <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db.sqlite3</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="Django default" uuid="c5340220-8036-487b-8fcc-73e0d0fc1248">
-      <driver-ref>sqlite.xerial</driver-ref>
+    <data-source source="LOCAL" name="Django" uuid="8f9e058d-fc8a-45aa-8b32-51f6f0b2a7e8">
+      <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <imported>true</imported>
       <remarks>$PROJECT_DIR$/gestorBibliotecas/settings.py</remarks>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\a21arielcg\PycharmProjects\gestorBibliotecas\db.sqlite3</jdbc-url>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://127.0.0.1:3306/gestorBibliotecas</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

@@ -9,19 +9,6 @@
 {% include "_fragments/header.html" %}
 
 <main class="flex-grow-1 container py-3">
-	<!-- Una barra de búsqueda y un botón primario de buscar -->
-	<form method="GET" class="col-12 col-md-8 mx-auto my-5">
-		<div class="input-group">
-			<input type="text" class="form-control" placeholder="Buscar libros, autores y socios"
-				   name="query"
-				   value="{{ query }}"
-				   aria-label="Buscar"
-				   aria-describedby="button-addon2">
-
-			<button class="btn btn-primary" type="submit" id="button-addon2">Buscar</button>
-		</div>
-	</form>
-
 	{% if socios.count > 0 %}
 		<h2 class="text-center mt-3">Socios</h2>
 		<table class="table table-striped">
@@ -55,30 +42,10 @@
 			{% endfor %}
 			</tbody>
 		</table>
-	{% endif %}
-
-	{% if libros.count > 0 %}
-		<h2 class="text-center mt-5">Libros</h2>
-		<table class="table table-striped">
-			<thead>
-			<tr>
-				<th>Código</th>
-				<th>Título</th>
-				<th>Autor</th>
-				<th>ISBN</th>
-			</tr>
-			</thead>
-			<tbody>
-			{% for libro in libros %}
-				<tr>
-					<th>{{ libro.codigo }}</th>
-					<td>{{ libro.titulo }}</td>
-					<td>{{ libro.autor }}</td>
-					<td>{{ libro.isbn }}</td>
-				</tr>
-			{% endfor %}
-			</tbody>
-		</table>
+	{% else %}
+		<div class="alert alert-info text-center">
+			No hay socios registrados
+		</div>
 	{% endif %}
 </main>
 

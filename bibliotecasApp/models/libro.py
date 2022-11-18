@@ -7,7 +7,7 @@ class Libro(models.Model):
 	titulo = models.CharField(max_length=100)
 	autor = models.CharField(max_length=50)
 	editorial = models.CharField(max_length=50)
-	fecha_adquisicion = models.DateField()
+	fecha_adquisicion = models.DateField(auto_now=True)
 
 	class Meta:
 		verbose_name = 'Libro'
