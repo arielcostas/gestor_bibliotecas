@@ -41,12 +41,11 @@ devolución, así como un buscador público de libros disponibles.
 
 ## Cosas por hacer
 
-- [ ] Página de inicio (listado de libros)
+- [X] Página de inicio (listado de libros y socios, con buscador)
 - [ ] Crear libro
 - [ ] Editar libro
 - [ ] Eliminar libro
 
-- [ ] Listado de socios (con buscador)
 - [ ] Detalle de socio
 - [ ] Crear socio
 - [ ] Editar socio

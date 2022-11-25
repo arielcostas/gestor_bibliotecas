@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Libro(models.Model):
-	codigo = models.IntegerField(primary_key=True, auto_created=True)
+	codigo = models.AutoField(primary_key=True)
 	isbn = models.CharField(max_length=13)
 	titulo = models.CharField(max_length=100)
 	autor = models.CharField(max_length=50)

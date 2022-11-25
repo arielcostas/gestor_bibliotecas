@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% include "_fragments/head.html" %}
+
+	<title>Nuevo libro - Gestor bibliotecas</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+{% include "_fragments/header.html" %}
+
+<main class="flex-grow-1 container py-3 col-5">
+	<h2>Insertar nuevo libro</h2>
+	<form action="/libros/new" method="post">
+		{% csrf_token %}
+		<h3 class="my-4">Nuevo libro</h3>
+		<div class="row mb-3">
+			<label for="isbn" class="col-sm-3 col-form-label">ISBN</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="isbn" name="isbn"
+					   placeholder="9780000000000">
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label for="titulo" class="col-sm-3 col-form-label">Título</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="titulo" name="titulo"
+					   placeholder="El Intelectual">
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label for="autor" class="col-sm-3 col-form-label">Autor</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="autor" name="autor"
+					   placeholder="Ariel Costas">
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label for="editorial" class="col-sm-3 col-form-label">Editorial</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="editorial" name="editorial"
+					   placeholder="Editoriales Costas">
+			</div>
+		</div>
+		<hr class="my-3"/>
+		<div class="d-flex align-items-center">
+			<input type="checkbox" name="crear_otro" id="crear_otro" class="ms-auto"/>
+			<label for="crear_otro" class="me-3">Añadir otro libro</label>
+			<button type="submit" class="btn btn-primary">Crear libro</button>
+		</div>
+	</form>
+</main>
+
+{% include "_fragments/footer.html" %}
+</body>
+</html>

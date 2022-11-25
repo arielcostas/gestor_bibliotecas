@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% include "_fragments/head.html" %}
+
+	<title>Nuevo socio - Gestor bibliotecas</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+{% include "_fragments/header.html" %}
+
+<main class="flex-grow-1 container py-3 col-5">
+	<h2>Insertar nuevo socio</h2>
+	<form action="/socios/new" method="post">
+		{% csrf_token %}
+		<h3 class="my-4">Datos personales</h3>
+		<div class="row mb-3">
+			<label for="dni" class="col-sm-3 col-form-label">DNI</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="dni" name="dni"
+					   placeholder="12345678A">
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label for="nombre" class="col-sm-3 col-form-label">Nombre</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="nombre" name="nombre"
+					   placeholder="Abel">
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label for="apellido" class="col-sm-3 col-form-label">Apellidos</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="apellido" name="apellido"
+					   placeholder="Caballero">
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label for="fecha_nacimiento" class="col-sm-3 col-form-label">Fecha de nacimiento</label>
+			<div class="col-sm-9">
+				<input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento"
+					   placeholder="Caballero">
+			</div>
+		</div>
+		<h3 class="my-4">Datos de contacto</h3>
+		<div class="row mb-3">
+			<label for="email" class="col-sm-3 col-form-label">Email</label>
+			<div class="col-sm-9">
+				<input type="email" class="form-control" id="email" name="email"
+					   placeholder="hola@example.com">
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label for="telefono" class="col-sm-3 col-form-label">Teléfono</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="telefono" name="telefono"
+					   placeholder="600112233">
+			</div>
+		</div>
+		<h3 class="my-4">Dirección</h3>
+		<div class="row mb-3">
+			<label for="domicilio" class="col-sm-3 col-form-label">Línea de dirección 1</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="domicilio" name="domicilio"
+					   placeholder="Av. de Galicia, 101">
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label for="codigo_postal" class="col-sm-3 col-form-label">Código postal</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="codigo_postal" name="codigo_postal"
+					   placeholder="36216">
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label for="ciudad" class="col-sm-3 col-form-label">Localidad</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="ciudad" name="ciudad"
+					   placeholder="Vigo">
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label for="provincia" class="col-sm-3 col-form-label">Provincia</label>
+			<div class="col-sm-9">
+				<input type="text" class="form-control" id="provincia" name="provincia"
+					   placeholder="Pontevedra">
+			</div>
+		</div>
+		<hr class="my-3" />
+		<div class="d-flex align-items-center">
+			<input type="checkbox" name="crear_otro" id="crear_otro" class="ms-auto" />
+			<label for="crear_otro" class="me-3">Crear otro socio</label>
+			<button type="submit" class="btn btn-primary">Crear socio</button>
+		</div>
+	</form>
+</main>
+
+{% include "_fragments/footer.html" %}
+</body>
+</html>
