@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
@@ -9,7 +10,6 @@ def nuevo_libro(request):
 	if request.method == 'POST':
 		form = NuevoLibroForm(request.POST)
 		if form.is_valid():
-			print(form.cleaned_data)
 			l = Libro.objects.create(
 				isbn=form.cleaned_data['isbn'],
 				titulo=form.cleaned_data['titulo'],
@@ -18,8 +18,9 @@ def nuevo_libro(request):
 			)
 			l.save()
 
+			messages.success(request, 'Libro creado correctamente')
 			if form.cleaned_data['crear_otro']:
-				return HttpResponseRedirect('socios/new')
+				return HttpResponseRedirect(request.path)
 			else:
 				return HttpResponseRedirect('/')
 	else:

@@ -1,5 +1,4 @@
-from enum import Enum
-
+from django.contrib.messages import get_messages
 from django.shortcuts import render
 
 from bibliotecasApp.models import Libro, Socio
@@ -23,5 +22,4 @@ def busqueda(request):
 	else:
 		libros = Libro.objects.all()
 		socios = Socio.objects.all()
-
 	return render(request, 'index.html', {'libros': libros, 'socios': socios, 'query': query if query else ''})

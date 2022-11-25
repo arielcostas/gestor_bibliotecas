@@ -9,7 +9,17 @@
 {% include "_fragments/header.html" %}
 
 <main class="flex-grow-1 container py-3 col-5">
-	<h2>Insertar nuevo socio</h2>
+	{% if messages %}
+		{% for message in messages %}
+			<div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+				{{ message }}
+				<button type="button" class="btn-close" data-bs-dismiss="alert"
+						aria-label="Close"></button>
+			</div>
+		{% endfor %}
+	{% endif %}
+
+	<h2 class="mt-4">Insertar nuevo socio</h2>
 	<form action="/socios/new" method="post">
 		{% csrf_token %}
 		<h3 class="my-4">Datos personales</h3>
@@ -35,9 +45,11 @@
 			</div>
 		</div>
 		<div class="row mb-3">
-			<label for="fecha_nacimiento" class="col-sm-3 col-form-label">Fecha de nacimiento</label>
+			<label for="fecha_nacimiento" class="col-sm-3 col-form-label">Fecha de
+				nacimiento</label>
 			<div class="col-sm-9">
-				<input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento"
+				<input type="date" class="form-control" id="fecha_nacimiento"
+					   name="fecha_nacimiento"
 					   placeholder="Caballero">
 			</div>
 		</div>
@@ -85,9 +97,9 @@
 					   placeholder="Pontevedra">
 			</div>
 		</div>
-		<hr class="my-3" />
+		<hr class="my-3"/>
 		<div class="d-flex align-items-center">
-			<input type="checkbox" name="crear_otro" id="crear_otro" class="ms-auto" />
+			<input type="checkbox" name="crear_otro" id="crear_otro" class="ms-auto"/>
 			<label for="crear_otro" class="me-3">Crear otro socio</label>
 			<button type="submit" class="btn btn-primary">Crear socio</button>
 		</div>

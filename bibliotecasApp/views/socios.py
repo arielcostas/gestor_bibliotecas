@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
@@ -9,7 +10,6 @@ def nuevo_socio(request):
 	if request.method == 'POST':
 		form = NuevoSocioForm(request.POST)
 		if form.is_valid():
-			print(form.cleaned_data)
 			Socio.objects.create(
 				dni=form.cleaned_data['dni'],
 				nombre=form.cleaned_data['nombre'],
@@ -22,6 +22,8 @@ def nuevo_socio(request):
 				provincia=form.cleaned_data['provincia'],
 				fecha_nacimiento=form.cleaned_data['fecha_nacimiento'],
 			).save()
+
+			messages.success(request, 'Socio creado correctamente')
 			if form.cleaned_data['crear_otro']:
 				return HttpResponseRedirect('socios/new')
 			else:

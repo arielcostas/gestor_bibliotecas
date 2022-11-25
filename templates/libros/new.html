@@ -9,7 +9,17 @@
 {% include "_fragments/header.html" %}
 
 <main class="flex-grow-1 container py-3 col-5">
-	<h2>Insertar nuevo libro</h2>
+	{% if messages %}
+		{% for message in messages %}
+			<div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+				{{ message }}
+				<button type="button" class="btn-close" data-bs-dismiss="alert"
+						aria-label="Close"></button>
+			</div>
+		{% endfor %}
+	{% endif %}
+
+	<h2 class="mt-4">Insertar nuevo libro</h2>
 	<form action="/libros/new" method="post">
 		{% csrf_token %}
 		<h3 class="my-4">Nuevo libro</h3>
