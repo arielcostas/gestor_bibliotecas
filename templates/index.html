@@ -9,8 +9,7 @@
 {% include "_fragments/header.html" %}
 
 <main class="flex-grow-1 container py-3">
-	<!-- Una barra de búsqueda y un botón primario de buscar -->
-	<form method="GET" class="col-12 col-md-8 mx-auto my-5">
+	<form method="GET" class="col-12 col-md-8 mx-auto my-5" id="formulario-busqueda">
 		<div class="input-group">
 			<input type="text" class="form-control" placeholder="Buscar libros, autores y socios"
 				   name="query"
@@ -18,7 +17,13 @@
 				   aria-label="Buscar"
 				   aria-describedby="button-addon2">
 
-			<button class="btn btn-primary" type="submit" id="button-addon2">Buscar</button>
+			<button type="button" class="btn bg-transparent"
+					style="margin-left: -45px; z-index: 100;"
+					id="btn-limpiar-busqueda">
+				<i class="bi bi-x-lg"></i>
+			</button>
+
+			<button class="btn btn-primary" type="submit">Buscar</button>
 		</div>
 	</form>
 
@@ -80,6 +85,13 @@
 			</tbody>
 		</table>
 	{% endif %}
+
+	<script>
+		document.getElementById("btn-limpiar-busqueda").addEventListener("click", e => {
+			document.querySelector("input[name=query]").value = "";
+			document.getElementById("formulario-busqueda").submit();
+		});
+	</script>
 </main>
 
 {% include "_fragments/footer.html" %}

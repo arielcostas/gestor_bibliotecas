@@ -16,16 +16,6 @@
 					   href="{{ url }}">Inicio</a>
 				</li>
 				<li class="nav-item">
-					{% url 'socios/index' as url %}
-					<a class="nav-link {% if request.path == url %}active{% endif %}"
-					   href="{{ url }}">Socios</a>
-				</li>
-				<li class="nav-item">
-					{% url 'libros/index' as url %}
-					<a class="nav-link {% if request.path == url %}active{% endif %}"
-					   href="{{ url }}">Libros</a>
-				</li>
-				<li class="nav-item">
 					{% url 'prestamos/index' as url %}
 					<a class="nav-link {% if request.path == url %}active{% endif %}"
 					   href="{{ url }}">Préstamos activos</a>
