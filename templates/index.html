@@ -51,7 +51,11 @@
 			<tbody>
 			{% for socio in socios %}
 				<tr>
-					<th>{{ socio.dni }}</th>
+					<th>
+						<a href="{% url 'socios_perfil' dni=socio.dni %}">
+						{{ socio.dni }}
+						</a>
+					</th>
 					<td>
 						{% if socio.bloqueado_hasta != None %}
 							<span class="badge text-bg-danger">Bloqueado</span>

@@ -11,14 +11,14 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item">
-					{% url 'index' as url %}
-					<a class="nav-link {% if request.path == url %}active{% endif %}"
-					   href="{{ url }}">Inicio</a>
+					{% url 'index' as linkhref %}
+					<a class="nav-link {% if request.path == linkhref %}active{% endif %}"
+					   href="{{ linkhref }}">Inicio</a>
 				</li>
 				<li class="nav-item">
-					{% url 'prestamos/index' as url %}
-					<a class="nav-link {% if request.path == url %}active{% endif %}"
-					   href="{{ url }}">Préstamos activos</a>
+					{% url 'prestamo_index' as linkhref %}
+					<a class="nav-link {% if request.path == linkhref %}active{% endif %}"
+					   href="{{ linkhref }}">Préstamos activos</a>
 				</li>
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="" role="button"

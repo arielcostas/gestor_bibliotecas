@@ -31,3 +31,7 @@ def nuevo_socio(request):
 	else:
 		form = NuevoSocioForm()
 	return render(request, 'socios/new.html', {'form': form})
+
+def perfil_socio(request, dni: str):
+	socio = Socio.objects.get(dni=dni)
+	return render(request, 'socios/dni.html', {'socio': socio})
