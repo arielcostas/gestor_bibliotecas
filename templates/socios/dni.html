@@ -3,17 +3,117 @@
 <head>
 	{% include "_fragments/head.html" %}
 
-	<title>Nuevo socio - Gestor bibliotecas</title>
+	<title>{{ socio.nombre }} - Gestor bibliotecas</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
 {% include "_fragments/header.html" %}
 
-<main class="flex-grow-1 container py-3 col-5">
-	<pre>
-		{{ socio }}
-	</pre>
+<main class="flex-grow-1 container py-3 mt-3 col-lg-4 px-5">
+	{% if messages %}
+		{% for message in messages %}
+			<div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+				{{ message }}
+				<button type="button" class="btn-close" data-bs-dismiss="alert"
+						aria-label="Close"></button>
+			</div>
+		{% endfor %}
+	{% endif %}
+
+	<h2>
+		{{ socio.nombre }} {{ socio.apellidos }}
+	</h2>
+
+	<span class="badge text-bg-secondary">{{ socio.dni }}</span>
+	{% if socio.bloqueado_hasta != None %}
+		<small class="badge text-bg-danger">Bloqueado</small>
+	{% elif socio.avisos_penalizacion >= 1 %}
+		<small class="badge text-bg-warning">{{ socio.avisos_penalizacion }} avisos</small>
+	{% else %}
+		<small class="badge text-bg-success">Correcto</small>
+	{% endif %}
+	<section class="col-8 mx-auto">
+		<h4 class="mt-3">Datos de contacto</h4>
+		<dl class="row">
+			<dt class="col-sm-5">Teléfono</dt>
+			<dd class="col-sm-7">{{ socio.telefono }}</dd>
+			<dt class="col-sm-5">Email</dt>
+			<dd class="col-sm-7">{{ socio.email }}</dd>
+			<dt class="col-sm-5">Dirección postal</dt>
+			<dd class="col-sm-7">
+				{{ socio.nombre }} {{ socio.apellidos }}<br/>
+				{{ socio.domicilio }}<br/>
+				{{ socio.codigo_postal }} {{ socio.localidad }}<br/>
+				{{ socio.provincia }}, España
+			</dd>
+		</dl>
+	</section>
+
+	<a href="{% url 'socios_editar' dni=socio.dni %}" class="btn btn-primary">Editar</a>
+	<button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalGestionarBloqueo">
+		Gestionar bloqueo
+	</button>
+
+	<h2 class="mt-4">Historial de préstamos</h2>
+	<!-- TODO: Historial de préstamos -->
 </main>
 
+<section class="modal" id="modalGestionarBloqueo" tabindex="-1"
+		 aria-labelledby="modalGestionarBloqueoLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modalGestionarBloqueoLabel">Gestionar bloqueo</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form action="{% url 'socios_bloquear' dni=socio.dni %}" method="post"
+					  id="form-bloqueo">
+					{% csrf_token %}
+					<div class="mb-3">
+						<label for="cantidad_avisos" class="form-label">Cantidad de avisos</label>
+						<input type="number" min="0" max="5" class="form-control" id="cantidad_avisos"
+							   name="cantidad_avisos" value="{{ socio.avisos_penalizacion }}">
+					</div>
+
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" name="activar_bloqueo"
+							   id="activar_bloqueo"
+							   value="1" {% if socio.bloqueado_hasta != None %}checked{% endif %}>
+						<label class="form-check-label" for="activar_bloqueo">
+							Bloquear
+						</label>
+					</div>
+					<div class="mb-3">
+						<label for="fecha_bloqueo" class="form-label">Bloqueado hasta</label>
+						<input type="date" class="form-control" id="fecha_bloqueo"
+							   name="fecha_bloqueo"
+							   value="{{ socio.bloqueado_hasta|date:'Y-m-d' }}">
+					</div>
+
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" form="form-bloqueo" class="btn btn-outline-danger">
+					Aplicar
+				</button>
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+					Cancelar
+				</button>
+			</div>
+		</div>
+	</div>
+</section>
 {% include "_fragments/footer.html" %}
+<script>
+	let activarBloqueo = document.getElementById("activar_bloqueo")
+	let fechaBloqueo = document.getElementById("fecha_bloqueo")
+
+	activarBloqueo.addEventListener("change", () => {
+		fechaBloqueo.disabled = !activarBloqueo.checked;
+	})
+
+	activarBloqueo.dispatchEvent(new Event("change"))
+</script>
 </body>
 </html>

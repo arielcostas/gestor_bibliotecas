@@ -25,7 +25,7 @@ def nuevo_socio(request):
 
 			messages.success(request, 'Socio creado correctamente')
 			if form.cleaned_data['crear_otro']:
-				return HttpResponseRedirect('socios/new')
+				return HttpResponseRedirect(request.path)
 			else:
 				return HttpResponseRedirect('/')
 	else:
@@ -35,3 +35,37 @@ def nuevo_socio(request):
 def perfil_socio(request, dni: str):
 	socio = Socio.objects.get(dni=dni)
 	return render(request, 'socios/dni.html', {'socio': socio})
+
+def editar_socio(request, dni: str):
+	socio = Socio.objects.get(dni=dni)
+	if request.method == 'POST':
+		form = NuevoSocioForm(request.POST)
+		if form.is_valid():
+			socio.dni = form.cleaned_data['dni']
+			socio.nombre = form.cleaned_data['nombre']
+			socio.apellidos = form.cleaned_data['apellido']
+			socio.email = form.cleaned_data['email']
+			socio.telefono = form.cleaned_data['telefono']
+			socio.domicilio = form.cleaned_data['domicilio']
+			socio.codigo_postal = form.cleaned_data['codigo_postal']
+			socio.ciudad = form.cleaned_data['ciudad']
+			socio.provincia = form.cleaned_data['provincia']
+			socio.fecha_nacimiento = form.cleaned_data['fecha_nacimiento']
+			socio.save()
+
+			messages.success(request, 'Socio editado correctamente')
+			return HttpResponseRedirect('/')
+	else:
+		form = NuevoSocioForm(initial={
+			'dni': socio.dni,
+			'nombre': socio.nombre,
+			'apellido': socio.apellidos,
+			'email': socio.email,
+			'telefono': socio.telefono,
+			'domicilio': socio.domicilio,
+			'codigo_postal': socio.codigo_postal,
+			'ciudad': socio.ciudad,
+			'provincia': socio.provincia,
+			'fecha_nacimiento': socio.fecha_nacimiento,
+		})
+	return render(request, 'socios/edit.html', {'form': form, 'socio': socio})
