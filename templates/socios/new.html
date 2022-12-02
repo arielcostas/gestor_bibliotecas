@@ -24,24 +24,24 @@
 		{% csrf_token %}
 		<h3 class="my-4">Datos personales</h3>
 		<div class="row mb-3">
-			<label for="dni" class="col-sm-3 col-form-label">DNI</label>
+			<label for="dni" class="col-sm-3 col-form-label">DNI/NIE</label>
 			<div class="col-sm-9">
 				<input type="text" class="form-control" id="dni" name="dni"
-					   placeholder="12345678A">
+					   maxlength="9" placeholder="12345678A" required>
 			</div>
 		</div>
 		<div class="row mb-3">
 			<label for="nombre" class="col-sm-3 col-form-label">Nombre</label>
 			<div class="col-sm-9">
 				<input type="text" class="form-control" id="nombre" name="nombre"
-					   placeholder="Abel">
+					   placeholder="Abel" required>
 			</div>
 		</div>
 		<div class="row mb-3">
 			<label for="apellido" class="col-sm-3 col-form-label">Apellidos</label>
 			<div class="col-sm-9">
 				<input type="text" class="form-control" id="apellido" name="apellido"
-					   placeholder="Caballero">
+					   placeholder="Caballero" required>
 			</div>
 		</div>
 		<div class="row mb-3">
@@ -50,7 +50,7 @@
 			<div class="col-sm-9">
 				<input type="date" class="form-control" id="fecha_nacimiento"
 					   name="fecha_nacimiento"
-					   placeholder="Caballero">
+					   placeholder="Caballero" required>
 			</div>
 		</div>
 		<h3 class="my-4">Datos de contacto</h3>
@@ -58,14 +58,14 @@
 			<label for="email" class="col-sm-3 col-form-label">Email</label>
 			<div class="col-sm-9">
 				<input type="email" class="form-control" id="email" name="email"
-					   placeholder="hola@example.com">
+					   placeholder="hola@example.com" required>
 			</div>
 		</div>
 		<div class="row mb-3">
 			<label for="telefono" class="col-sm-3 col-form-label">Teléfono</label>
 			<div class="col-sm-9">
-				<input type="text" class="form-control" id="telefono" name="telefono"
-					   placeholder="600112233">
+				<input type="tel" class="form-control" id="telefono" name="telefono"
+					   placeholder="600112233" required>
 			</div>
 		</div>
 		<h3 class="my-4">Dirección</h3>
@@ -73,28 +73,28 @@
 			<label for="domicilio" class="col-sm-3 col-form-label">Línea de dirección 1</label>
 			<div class="col-sm-9">
 				<input type="text" class="form-control" id="domicilio" name="domicilio"
-					   placeholder="Av. de Galicia, 101">
+					   placeholder="Av. de Galicia, 101" required>
 			</div>
 		</div>
 		<div class="row mb-3">
 			<label for="codigo_postal" class="col-sm-3 col-form-label">Código postal</label>
 			<div class="col-sm-9">
 				<input type="text" class="form-control" id="codigo_postal" name="codigo_postal"
-					   placeholder="36216">
+					   placeholder="36216" required>
 			</div>
 		</div>
 		<div class="row mb-3">
 			<label for="ciudad" class="col-sm-3 col-form-label">Localidad</label>
 			<div class="col-sm-9">
 				<input type="text" class="form-control" id="ciudad" name="ciudad"
-					   placeholder="Vigo">
+					   placeholder="Vigo" required>
 			</div>
 		</div>
 		<div class="row mb-3">
 			<label for="provincia" class="col-sm-3 col-form-label">Provincia</label>
 			<div class="col-sm-9">
 				<input type="text" class="form-control" id="provincia" name="provincia"
-					   placeholder="Pontevedra">
+					   placeholder="Pontevedra" required>
 			</div>
 		</div>
 		<hr class="my-3"/>
