@@ -9,9 +9,36 @@
 {% include "_fragments/header.html" %}
 
 <main class="flex-grow-1 container py-3">
-	<pre>
-		{{ prestamos }}
-	</pre>
+	<table class="table">
+		<thead>
+		<tr>
+			<th>ID</th>
+			<th>Libro</th>
+			<th>Socio</th>
+			<th>Fecha de inicio</th>
+			<th>Fecha tope</th>
+		</tr>
+		</thead>
+		<tbody>
+		{% for prestamo in prestamos %}
+			<tr class="{% if prestamo.pendiente_tarde %}table-danger{% else %}table-success{% endif %}">
+				<th>
+					{{ prestamo.id }}
+				</th>
+				<td>
+					{{ prestamo.libro.codigo }} - {{ prestamo.libro.titulo }}
+				</td>
+				<td>
+					<a href="{% url 'socios_perfil' dni=prestamo.socio.dni %}">
+						{{ prestamo.socio.nombre }} {{ prestamo.socio.apellidos }}
+					</a>
+				</td>
+				<td>{{ prestamo.fecha_prestamo }}</td>
+				<td>{{ prestamo.fecha_devolucion }}</td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
 </main>
 
 {% include "_fragments/footer.html" %}

@@ -4,5 +4,5 @@ from bibliotecasApp.models import Prestamo
 
 
 def lista_prestamos(request):
-	prestamos = Prestamo.objects.all()
+	prestamos = Prestamo.objects.filter(fecha_devolucion_real__isnull=True)
 	return render(request, 'prestamos/index.html', {'prestamos': prestamos})

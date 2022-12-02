@@ -1,3 +1,5 @@
+from datetime import date
+
 from django.db import models
 
 
@@ -12,3 +14,8 @@ class Prestamo(models.Model):
 	class Meta:
 		verbose_name = 'Prestamo'
 		verbose_name_plural = 'Prestamos'
+
+	def pendiente_tarde(self):
+		if self.fecha_devolucion_real is None and self.fecha_devolucion < date.today():
+			return True
+		return False

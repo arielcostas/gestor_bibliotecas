@@ -25,17 +25,16 @@ devolución, así como un buscador público de libros disponibles.
 ## Cosas por hacer
 
 - [X] Página de inicio (listado de libros y socios, con buscador)
-- [ ] Detalle de libro
 - [X] Crear libro
 - [ ] Editar libro
 - [ ] Eliminar libro
 
 - [ ] Detalle de socio
 - [X] Crear socio
-- [ ] Editar socio
+- [X] Editar socio
 - [ ] Eliminar socio
-- [ ] Penalizar socio
-- [ ] Despenalizar socio
+- [X] Penalizar socio
+- [X] Despenalizar socio
 
 - [ ] Detalle de préstamo
 - [ ] Crear préstamo
