@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
-from bibliotecasApp.forms import GestionBloqueoForm, NuevoSocioForm
+from bibliotecasApp.forms import GestionBloqueoForm, NuevoSocioForm, EditarSocioForm
 from bibliotecasApp.models import Socio
 
 
@@ -41,9 +41,8 @@ def perfil_socio(request, dni: str):
 def editar_socio(request, dni: str):
 	socio = Socio.objects.get(dni=dni)
 	if request.method == 'POST':
-		form = NuevoSocioForm(request.POST)
+		form = EditarSocioForm(request.POST)
 		if form.is_valid():
-			socio.dni = form.cleaned_data['dni']
 			socio.nombre = form.cleaned_data['nombre']
 			socio.apellidos = form.cleaned_data['apellido']
 			socio.email = form.cleaned_data['email']
@@ -57,8 +56,12 @@ def editar_socio(request, dni: str):
 
 			messages.success(request, 'Socio editado correctamente')
 			return HttpResponseRedirect('/socios/' + dni)
+		else:
+			print(form.errors)
+			messages.error(request, 'Error al editar el socio')
+			return HttpResponseRedirect('/socios/' + dni)
 	else:
-		form = NuevoSocioForm(initial={
+		form = EditarSocioForm(initial={
 			'dni': socio.dni,
 			'nombre': socio.nombre,
 			'apellido': socio.apellidos,
