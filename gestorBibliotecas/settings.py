@@ -14,13 +14,13 @@ DEBUG = True
 ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else ['*']
 
 INSTALLED_APPS = [
+	'bibliotecasApp.apps.BibliotecasappConfig',
 	'django.contrib.admin',
 	'django.contrib.auth',
 	'django.contrib.contenttypes',
 	'django.contrib.sessions',
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
-	'bibliotecasApp.apps.BibliotecasappConfig',
 ]
 
 MIDDLEWARE = [
@@ -56,11 +56,10 @@ WSGI_APPLICATION = 'gestorBibliotecas.wsgi.application'
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.' + os.getenv('DB_ENGINE', 'mysql'),
-		'NAME': os.getenv('DB_NAME', 'gestorBibliotecas'),
-		'USER': os.getenv('DB_USER', 'django'),
-		'PASSWORD': os.getenv('DB_PASS', 'django'),
-		'HOST': os.getenv('DB_HOST', 'localhost'),
-		'PORT': os.getenv('DB_PORT', '3306'),
+		'NAME': os.getenv('DBNAME', 'gestorBibliotecas'),
+		'USER': os.getenv('DBUSER', 'django'),
+		'PASSWORD': os.getenv('DBPASS', 'django'),
+		'HOST': os.getenv('DBHOST', 'localhost')
 	}
 }
 
@@ -80,10 +79,14 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LANGUAGE_CODE = 'es-es'
-TIME_ZONE = 'Europe/Madrid'
+
+TIME_ZONE = 'UTC'
+
 USE_I18N = True
+
 USE_TZ = True
 
+STATICFILES_DIRS = (str(BASE_DIR.joinpath('static')),)
 STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
