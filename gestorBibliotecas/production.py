@@ -17,7 +17,7 @@ MIDDLEWARE = [
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-hostname = os.environ['DBHOST']
+hostname = os.environ['DB_HOST']
 
 DATABASES = {
 	'default': {
