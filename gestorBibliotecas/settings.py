@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -5,11 +6,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
-SECRET_KEY = 'django-insecure-j91vn+cndujqh2+24pn*q=6klh9qz4mt=yb+j8@1w790+wl3v$'
+SECRET_KEY = os.getenv('SECRET_KEY',
+					   'django-insecure-j91vn+cndujqh2+24pn*q=6klh9qz4mt=yb+j8@1w790+wl3v$')
 
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else ['*']
+CSRF_TRUSTED_ORIGINS = ['https://' + os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' \
+																		in os.environ else ['*']
 
 INSTALLED_APPS = [
 	'django.contrib.admin',
@@ -53,12 +57,12 @@ WSGI_APPLICATION = 'gestorBibliotecas.wsgi.application'
 
 DATABASES = {
 	'default': {
-		'ENGINE': 'django.db.backends.mysql',
-		'NAME': 'gestorBibliotecas',
-		'USER': 'django',
-		'PASSWORD': 'django',
-		'HOST': 'localhost',
-		'PORT': '3306'
+		'ENGINE': 'django.db.backends.' + os.getenv('DB_ENGINE', 'mysql'),
+		'NAME': os.getenv('DB_NAME', 'gestorBibliotecas'),
+		'USER': os.getenv('DB_USER', 'django'),
+		'PASSWORD': os.getenv('DB_PASS', 'django'),
+		'HOST': os.getenv('DB_HOST', 'localhost'),
+		'PORT': os.getenv('DB_PORT', '3306'),
 	}
 }
 
