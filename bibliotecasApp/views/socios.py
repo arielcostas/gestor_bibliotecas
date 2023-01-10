@@ -37,7 +37,6 @@ def perfil_socio(request, dni: str):
 	socio = Socio.objects.get(dni=dni)
 	return render(request, 'socios/dni.html', {'socio': socio})
 
-
 def editar_socio(request, dni: str):
 	socio = Socio.objects.get(dni=dni)
 	if request.method == 'POST':

@@ -9,19 +9,20 @@
 {% include "_fragments/header.html" %}
 
 <main class="flex-grow-1 container py-3">
-	<table class="table">
+	<table class="table table-bordered table-striped">
 		<thead>
 		<tr>
 			<th>ID</th>
 			<th>Libro</th>
 			<th>Socio</th>
 			<th>Fecha de inicio</th>
-			<th>Fecha tope</th>
+			<th>Fecha límite devolución</th>
+			<th>Acciones</th>
 		</tr>
 		</thead>
 		<tbody>
 		{% for prestamo in prestamos %}
-			<tr class="{% if prestamo.pendiente_tarde %}table-danger{% else %}table-success{% endif %}">
+			<tr>
 				<th>
 					{{ prestamo.id }}
 				</th>
@@ -34,7 +35,10 @@
 					</a>
 				</td>
 				<td>{{ prestamo.fecha_prestamo }}</td>
-				<td>{{ prestamo.fecha_devolucion }}</td>
+				<td class="fw-bold {% if prestamo.pendiente_tarde %}text-danger{% else %}text-success{% endif %}">{{ prestamo.fecha_devolucion }}</td>
+				<td>
+					<a href="" class="">Devolver</a>
+				</td>
 			</tr>
 		{% endfor %}
 		</tbody>

@@ -27,3 +27,6 @@ class Socio(models.Model):
 
 	def prestamos_activos(self):
 		return self.prestamo_set.filter(fecha_devolucion_real=None).count()
+
+	def prestamos_socio(self):
+		return self.prestamo_set.all().order_by("-fecha_prestamo")
