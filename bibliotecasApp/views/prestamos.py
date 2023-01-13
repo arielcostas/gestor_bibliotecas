@@ -45,4 +45,12 @@ def nuevo_prestamo(request):
 	socios = Socio.objects.all().filter(bloqueado_hasta=None)
 	libros = Libro.objects.all()
 	libros = [l for l in libros if not l.is_prestado()]
+
+	if len(socios) == 0:
+		messages.error(request, 'No se puede prestar el libro a ningún socio')
+		return HttpResponseRedirect('/')
+	if len(libros) == 0:
+		messages.error(request, 'No hay libros disponibles para prestar')
+		return HttpResponseRedirect('/')
+
 	return render(request, 'prestamos/new.html', {'form': form, 'libros': libros, 'socios': socios})
