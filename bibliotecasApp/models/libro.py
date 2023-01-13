@@ -12,3 +12,6 @@ class Libro(models.Model):
 	class Meta:
 		verbose_name = 'Libro'
 		verbose_name_plural = 'Libros'
+
+	def is_prestado(self):
+		return self.prestamo_set.filter(fecha_devolucion_real__isnull=True).exists()

@@ -1,3 +1,3 @@
-from .nuevosocioform import *
-from .nuevolibroform import *
-from .gestionbloqueo import *
+from .socio import *
+from .libro import *
+from .bloqueo import *

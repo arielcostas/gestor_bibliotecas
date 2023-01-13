@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{% include "_fragments/head.html" %}
+
+	<title>Nuevo préstamo - Gestor bibliotecas</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+{% include "_fragments/header.html" %}
+
+<main class="flex-grow-1 container py-3 col-5">
+	{% if messages %}
+		{% for message in messages %}
+			<div class="alert alert-{{ message.tags }} alert-dismissible fade show">
+				{{ message }}
+				<button type="button" class="btn-close" data-bs-dismiss="alert"
+						aria-label="Close"></button>
+			</div>
+		{% endfor %}
+	{% endif %}
+
+	<h2 class="mt-4">Dar de alta nuevo préstamo</h2>
+	<form action="/prestamos/new" method="post">
+		{% csrf_token %}
+		<div class="row mb-3">
+			<label for="socio" class="col-sm-3 col-form-label">Socio</label>
+			<div class="col-sm-9">
+				<select class="form-select" id="socio" name="socio">
+					{% for socio in socios %}
+						<option value="{{ socio.dni }}">
+							{{ socio.apellidos }}, {{ socio.nombre }} ({{ socio.dni }})
+						</option>
+					{% endfor %}
+				</select>
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label for="libro" class="col-sm-3 col-form-label">Libro</label>
+			<div class="col-sm-9">
+				<select class="form-select" id="libro" name="libro">
+					{% for libro in libros %}
+						<option value="{{ libro.codigo }}">{{ libro.codigo }} {{ libro.autor }}
+							- {{ libro.titulo }}</option>
+					{% endfor %}
+				</select>
+			</div>
+		</div>
+		<div class="row mb-3">
+			<label for="fecha_devolucion" class="col-sm-3 col-form-label">Fecha devolución</label>
+			<div class="col-sm-9">
+				<input type="date" class="form-control" id="fecha_devolucion"
+					   name="fecha_devolucion"
+					   value="{{ form.fecha_devolucion.initial|date:'Y-m-d' }}">
+			</div>
+		</div>
+		<hr class="my-3"/>
+		<div class="d-flex align-items-center">
+			<button type="submit" class="btn btn-primary">Prestar</button>
+		</div>
+	</form>
+</main>
+
+{% include "_fragments/footer.html" %}
+</body>
+</html>
