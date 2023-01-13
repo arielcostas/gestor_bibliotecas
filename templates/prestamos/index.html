@@ -37,7 +37,7 @@
 				<td>{{ prestamo.fecha_prestamo }}</td>
 				<td class="fw-bold {% if prestamo.pendiente_tarde %}text-danger{% else %}text-success{% endif %}">{{ prestamo.fecha_devolucion }}</td>
 				<td>
-					<a href="" class="">Devolver</a>
+					<a href="{% url 'prestamo_devolver' prestamo_id=prestamo.id %}">Devolver</a>
 				</td>
 			</tr>
 		{% endfor %}

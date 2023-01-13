@@ -14,4 +14,5 @@ urlpatterns = [
 
 	path('prestamos', views.lista_prestamos, name='prestamo_index'),
 	path('prestamos/new', views.nuevo_prestamo, name='prestamo_new'),
+	path('prestamos/<int:prestamo_id>/devolver', views.devolver_prestamo, name='prestamo_devolver'),
 ]

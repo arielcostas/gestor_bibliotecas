@@ -13,6 +13,13 @@ def lista_prestamos(request):
 	return render(request, 'prestamos/index.html', {'prestamos': prestamos})
 
 
+def devolver_prestamo(request, prestamo_id):
+	p = Prestamo.objects.get(id=prestamo_id)
+	p.fecha_devolucion_real = datetime.now()
+	p.save()
+	messages.success(request, 'Devolución realizada correctamente.')
+	return HttpResponseRedirect('/')
+
 def nuevo_prestamo(request):
 	if request.method == 'POST':
 		form = NuevoPrestamoForm(request.POST)
