@@ -57,8 +57,8 @@ DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.' + os.getenv('DB_ENGINE', 'mysql'),
 		'NAME': os.getenv('DBNAME', 'gestorBibliotecas'),
-		'USER': os.getenv('DBUSER', 'django'),
-		'PASSWORD': os.getenv('DBPASS', 'django'),
+		'USER': os.getenv('DBUSER', 'root'),
+		'PASSWORD': os.getenv('DBPASS', 'root'),
 		'HOST': os.getenv('DBHOST', 'localhost')
 	}
 }
