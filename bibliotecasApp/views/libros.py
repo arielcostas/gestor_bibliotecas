@@ -16,7 +16,11 @@ def nuevo_libro(request):
 				autor=form.cleaned_data['autor'],
 				editorial=form.cleaned_data['editorial']
 			)
-			l.save()
+			try:
+				l.save()
+			except Exception as e:
+				print(e)
+				messages.error(request, 'Error al crear el libro: {}'.format(e))
 
 			messages.success(request, 'Libro creado correctamente')
 			if form.cleaned_data['crear_otro']:
